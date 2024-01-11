@@ -3,13 +3,9 @@ package com.example.calculadoradepropinas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-
 import android.widget.EditText
-
 import androidx.appcompat.app.AlertDialog
 import com.example.calculadoradepropinas.databinding.ActivityAuthBinding
-
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 
@@ -67,6 +63,7 @@ class AuthActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         showHome(user?.email ?: "", ProviderType.BASIC)
+                        
                     } else {
                         showAlert()
                     }

@@ -9,9 +9,7 @@ enum class ProviderType{
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
-
+        setContentView(R.layout.activity_logout)
     }
 
     class PropinaCalculator {
@@ -31,12 +29,4 @@ class HomeActivity : AppCompatActivity() {
 
 data class Trabajador(val nombre: String, val horasTrabajadas: Double)
 
-fun main() {
-    val calculator = PropinaCalculator()
-    calculator.propinasGeneradas = 100.0
-    calculator.agregarTrabajador("Juan", 8.0)
-    calculator.agregarTrabajador("María", 6.0)
-    val propinas = calculator.calcularPropina()
-    println("Las propinas son: $propinas")
-}
 }

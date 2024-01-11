@@ -1,14 +1,16 @@
 package com.example.calculadoradepropinas
 
+
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-
 class CamareroAdapter(private val camareros: MutableList<Camarero>) :
     RecyclerView.Adapter<CamareroAdapter.ViewHolder>() {
+    private val selectedItems = mutableListOf<Int>()
 
     fun removeCamarero(position: Int) {
         if (position in 0 until camareros.size) {
@@ -29,11 +31,15 @@ class CamareroAdapter(private val camareros: MutableList<Camarero>) :
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val camarero = camareros[position]
+
+
         holder.textViewNombre.text = camarero.nombre
         holder.textViewHoras.text = "Horas trabajadas: ${camarero.horasTrabajadas}"
         holder.textViewPropina.text = "Propina: $${camarero.propina}"
+
     }
 
     override fun getItemCount(): Int {

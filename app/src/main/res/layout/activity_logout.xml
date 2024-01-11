@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -22,7 +22,8 @@
             android:id="@+id/emailTextView"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="email" />
+            android:text="email"
+            style="@style/ThemeOverlay.Material3.TextInputEditText"/>
 
         <Space
             android:layout_width="match_parent"
@@ -48,9 +49,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+
                 android:text="Cerrar Sesión"
-                android:textColor="@color/white"
+
 
                 />
 
