@@ -12,15 +12,14 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.material.textfield.TextInputLayout
-
+import java.util.Arrays
 
 
 class CalcActivity : AppCompatActivity() {
-/*    private lateinit var editTextNombre: EditText
-    private lateinit var editTextHoras: EditText
-    private lateinit var editTextPropinasTotal: EditText*/
     private lateinit var editTextMostrarValorHora: TextView
     private lateinit var btnAgregar: Button
     private lateinit var btnCalcular: Button
@@ -28,8 +27,8 @@ class CalcActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CamareroAdapter
     private val camareros = mutableListOf<Camarero>()
-
-
+    private val testDeviceIds = Arrays.asList("c0532602-9b8f-4d48-b931-ddb02358612f")
+    lateinit var mAdView : AdView
 
 
 
@@ -38,17 +37,11 @@ class CalcActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_calc)
 
-            // Función para mostrar una alerta
-             fun showAlertDialog(title: String, message: String) {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle(title)
-                builder.setMessage(message)
-                builder.setPositiveButton("Aceptar") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                val alertDialog = builder.create()
-                alertDialog.show()
-            }
+            MobileAds.initialize(this) {}
+            mAdView = findViewById(R.id.adView)
+            val adRequest = AdRequest.Builder().build()
+            mAdView.loadAd(adRequest)
+
 
 
             if (savedInstanceState != null) {
@@ -62,7 +55,6 @@ class CalcActivity : AppCompatActivity() {
                 editTextMostrarValorHora.text = valorHora
             }
 
-            //val textInputLayoutPropinas = findViewById<TextInputLayout>(R.id.editTextPropinaTotal)
             btnAgregar = findViewById(R.id.btnAgregar)
             recyclerView = findViewById(R.id.recyclerView)
             btnCalcular = findViewById(R.id.btnCalcular)
@@ -115,14 +107,9 @@ class CalcActivity : AppCompatActivity() {
             btnCalcular.setOnClickListener {
 
                 val totalHorasTrabajadas = camareros.sumOf { it.horasTrabajadas }
-                val textInputLayoutPropinas = findViewById<TextInputLayout>(R.id.editTextPropinaTotal)
-
-
 
                 // Calcula el valor por hora
-
                 val valorPorHora = if (totalHorasTrabajadas > 0) {
-
                     val textInputLayoutPropinas = findViewById<TextInputLayout>(R.id.editTextPropinaTotal)
                     val editTextPropinas = textInputLayoutPropinas.editText?.text.toString()
                     if (editTextPropinas.isNotEmpty()) {
@@ -135,7 +122,6 @@ class CalcActivity : AppCompatActivity() {
                         //showAlertDialog("Alerta", "Por favor, ingresa un valor en propinas.")
                         0.0 // En caso de que no haya horas trabajadas, el valor por hora es 0
                     }
-
                 } else {
                     0.0 // En caso de que no haya horas trabajadas, el valor por hora es 0
                 }
