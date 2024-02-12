@@ -5,19 +5,22 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.textfield.TextInputLayout
 
 
 
 class CalcActivity : AppCompatActivity() {
-    private lateinit var editTextNombre: EditText
+/*    private lateinit var editTextNombre: EditText
     private lateinit var editTextHoras: EditText
-    private lateinit var editTextPropinasTotal: EditText
+    private lateinit var editTextPropinasTotal: EditText*/
     private lateinit var editTextMostrarValorHora: TextView
     private lateinit var btnAgregar: Button
     private lateinit var btnCalcular: Button
@@ -26,10 +29,27 @@ class CalcActivity : AppCompatActivity() {
     private lateinit var adapter: CamareroAdapter
     private val camareros = mutableListOf<Camarero>()
 
+
+
+
+
         @SuppressLint("NotifyDataSetChanged")
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_calc)
+
+            // Función para mostrar una alerta
+             fun showAlertDialog(title: String, message: String) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(title)
+                builder.setMessage(message)
+                builder.setPositiveButton("Aceptar") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                val alertDialog = builder.create()
+                alertDialog.show()
+            }
+
 
             if (savedInstanceState != null) {
                 val savedCamareros = savedInstanceState.getParcelableArrayList<Camarero>("camareros")
@@ -80,7 +100,7 @@ class CalcActivity : AppCompatActivity() {
                 val horasStr = textInputLayoutHoras.editText?.text.toString()
 
                 if (nombre.isNotEmpty() && horasStr.isNotEmpty()) {
-                    val horas = horasStr.toInt()
+                    val horas = horasStr.toDouble()
                     val camarero = Camarero(nombre, horas)
                     camareros.add(camarero)
                     adapter.notifyItemInserted(camareros.size - 1)
@@ -93,30 +113,38 @@ class CalcActivity : AppCompatActivity() {
             }
 
             btnCalcular.setOnClickListener {
+
                 val totalHorasTrabajadas = camareros.sumOf { it.horasTrabajadas }
                 val textInputLayoutPropinas = findViewById<TextInputLayout>(R.id.editTextPropinaTotal)
 
-                //val totalPropinasDecimal: Double = textInputLayoutPropinas.editText?.text.toString().toDouble()
+
 
                 // Calcula el valor por hora
+
                 val valorPorHora = if (totalHorasTrabajadas > 0) {
 
                     val textInputLayoutPropinas = findViewById<TextInputLayout>(R.id.editTextPropinaTotal)
                     val editTextPropinas = textInputLayoutPropinas.editText?.text.toString()
-                    val editTextPropinasReplace = editTextPropinas.replace(",", ".").toDouble()
-                    val totProps = editTextPropinasReplace / totalHorasTrabajadas.toDouble()
-                    val totPropsFormateado = String.format("%.2f", totProps)
-                    totPropsFormateado.also { editTextMostrarValorHora.text = it }
-                    totPropsFormateado.replace(",", ".").toDouble()
+                    if (editTextPropinas.isNotEmpty()) {
+                        val editTextPropinasReplace = editTextPropinas.replace(",", ".").toDouble()
+                        val totProps = editTextPropinasReplace / totalHorasTrabajadas.toDouble()
+                        val totPropsFormateado = String.format("%.2f", totProps)
+                        totPropsFormateado.also { editTextMostrarValorHora.text = it }
+                        totPropsFormateado.replace(",", ".").toDouble()
+                    }else{
+                        //showAlertDialog("Alerta", "Por favor, ingresa un valor en propinas.")
+                        0.0 // En caso de que no haya horas trabajadas, el valor por hora es 0
+                    }
 
                 } else {
                     0.0 // En caso de que no haya horas trabajadas, el valor por hora es 0
                 }
 
 
+
                 // Calcular las propinas individuales y actualizar la lista de camareros
                 for (camarero in camareros) {
-                    val propinaIndividual = camarero.horasTrabajadas.toDouble() * valorPorHora
+                    val propinaIndividual = camarero.horasTrabajadas * valorPorHora
                     val propinaIndividualFormat = String.format("%.2f",propinaIndividual)
                     val propinaIndividualReplace = propinaIndividualFormat.replace(",",".")
                     camarero.propina = propinaIndividualReplace.toDouble()
@@ -125,7 +153,10 @@ class CalcActivity : AppCompatActivity() {
                 // Notifica al adaptador que los datos han cambiado
                 adapter.notifyDataSetChanged()
 
+
             }
+
+            MobileAds.initialize(this) {}
         }
 
     // Este método para guardar datos en el Bundle cuando sea necesario

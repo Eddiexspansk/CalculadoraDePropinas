@@ -3,11 +3,11 @@ import android.os.Parcel
 import android.os.Parcelable
 
 
-data class Camarero(val nombre: String, val horasTrabajadas: Int, var propina: Double = 0.0): Parcelable {
+data class Camarero(val nombre: String, val horasTrabajadas: Double, var propina: Double = 0.0): Parcelable {
     // Implementación de Parcelable
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(nombre)
-        parcel.writeInt(horasTrabajadas)
+        parcel.writeDouble(horasTrabajadas)
         parcel.writeDouble(propina)
     }
 
@@ -17,7 +17,7 @@ data class Camarero(val nombre: String, val horasTrabajadas: Int, var propina: D
 
     constructor(parcel: Parcel) : this(
         parcel.readString() ?: "",
-        parcel.readInt(),
+        parcel.readDouble(),
         parcel.readDouble()
     )
 
