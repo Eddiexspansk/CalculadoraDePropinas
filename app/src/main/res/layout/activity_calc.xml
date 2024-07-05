@@ -64,7 +64,7 @@
             android:id="@+id/btnAgregar"
             style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="150dp"
-            android:layout_height="48dp"
+            android:layout_height="50dp"
             android:layout_marginStart="36dp"
             android:layout_marginTop="20dp"
             android:text="Agregar"
@@ -76,10 +76,10 @@
             android:id="@+id/btnClear"
             style="@style/Widget.Material3.Button.ElevatedButton.Icon"
             android:layout_width="104dp"
-            android:layout_height="44dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Limpiar"
+            android:text="Borrar"
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
             android:id="@+id/btnCalcular"
             style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="150dp"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:text="Calcular"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,13 +102,15 @@
             style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Propinas"
+            android:hint="Propinas Totales en Jornada"
             android:lines="@integer/material_motion_duration_long_1"
             android:padding="10dp"
             android:selectAllOnFocus="false"
             android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/design_default_color_primary_dark"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -137,7 +139,7 @@
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/btnCalcular"
-            app:layout_constraintVertical_bias="0.718" />
+            app:layout_constraintVertical_bias="0.962" />
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"

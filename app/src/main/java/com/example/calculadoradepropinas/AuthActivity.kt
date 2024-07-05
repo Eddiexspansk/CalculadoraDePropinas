@@ -12,7 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class AuthActivity : AppCompatActivity() {
-    //private lateinit var binding: ActivityAuthBinding
     private lateinit var viewBinding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
