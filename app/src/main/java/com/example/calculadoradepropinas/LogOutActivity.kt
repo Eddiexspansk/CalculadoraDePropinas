@@ -9,7 +9,7 @@ enum class ProviderType{
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_logout)
+        //setContentView(R.layout.activity_logout)
     }
 
     class PropinaCalculator {

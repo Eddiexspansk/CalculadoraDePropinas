@@ -28,14 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+        <!--<activity
             android:name=".AuthActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:launchMode="singleTop"
             android:exported="false">
 
 
-            </activity>
+            </activity>-->
         <activity
             android:name=".HomeActivity"
             android:configChanges="orientation|screenSize|screenLayout"

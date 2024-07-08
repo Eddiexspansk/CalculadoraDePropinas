@@ -2,6 +2,7 @@ package com.example.calculadoradepropinas
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -30,7 +31,14 @@ class CalcActivity : AppCompatActivity() {
     private val testDeviceIds = Arrays.asList("c0532602-9b8f-4d48-b931-ddb02358612f")
     lateinit var mAdView : AdView
 
-
+    inline fun <reified T : Parcelable> Bundle.getParcelableArrayListCompat(key: String): ArrayList<T>? {
+        return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            getParcelableArrayList(key, T::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            getParcelableArrayList(key)
+        }
+    }
 
         @SuppressLint("NotifyDataSetChanged")
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,14 +53,14 @@ class CalcActivity : AppCompatActivity() {
 
 
             if (savedInstanceState != null) {
-                val savedCamareros = savedInstanceState.getParcelableArrayList<Camarero>("camareros")
+                val savedCamareros = savedInstanceState.getParcelableArrayListCompat<Camarero>("camareros")
                 if (savedCamareros != null) {
                     camareros.addAll(savedCamareros)
                     adapter.notifyDataSetChanged()
-
                 }
+
                 val valorHora = savedInstanceState.getString("valor por hora")
-                editTextMostrarValorHora.text = valorHora
+                editTextMostrarValorHora.setText(valorHora)
             }
 
             btnAgregar = findViewById(R.id.btnAgregar)
