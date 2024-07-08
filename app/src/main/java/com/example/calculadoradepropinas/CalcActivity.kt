@@ -4,20 +4,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Parcelable
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.material.textfield.TextInputLayout
-import java.util.Arrays
+import java.util.Locale
 
 
 class CalcActivity : AppCompatActivity() {
@@ -28,10 +24,9 @@ class CalcActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CamareroAdapter
     private val camareros = mutableListOf<Camarero>()
-    private val testDeviceIds = Arrays.asList("c0532602-9b8f-4d48-b931-ddb02358612f")
-    lateinit var mAdView : AdView
+    private lateinit var mAdView : AdView
 
-    inline fun <reified T : Parcelable> Bundle.getParcelableArrayListCompat(key: String): ArrayList<T>? {
+    private inline fun <reified T : Parcelable> Bundle.getParcelableArrayListCompat(key: String): ArrayList<T>? {
         return if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             getParcelableArrayList(key, T::class.java)
         } else {
@@ -40,7 +35,7 @@ class CalcActivity : AppCompatActivity() {
         }
     }
 
-        @SuppressLint("NotifyDataSetChanged")
+        @SuppressLint("NotifyDataSetChanged", "CutPasteId", "SetTextI18n")
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.activity_calc)
@@ -60,7 +55,7 @@ class CalcActivity : AppCompatActivity() {
                 }
 
                 val valorHora = savedInstanceState.getString("valor por hora")
-                editTextMostrarValorHora.setText(valorHora)
+                editTextMostrarValorHora.text = valorHora
             }
 
             btnAgregar = findViewById(R.id.btnAgregar)
@@ -90,7 +85,7 @@ class CalcActivity : AppCompatActivity() {
                 textInputLayoutNombre.editText?.text?.clear()
                 textInputLayoutHoras.editText?.text?.clear()
                 editTextPropinasTotal.editText?.text?.clear()
-                editTextMostrarValorHora.setText("0")
+                editTextMostrarValorHora.text = "0"
                 camareros.clear()
                 adapter.notifyDataSetChanged()
             }
@@ -122,8 +117,8 @@ class CalcActivity : AppCompatActivity() {
                     val editTextPropinas = textInputLayoutPropinas.editText?.text.toString()
                     if (editTextPropinas.isNotEmpty()) {
                         val editTextPropinasReplace = editTextPropinas.replace(",", ".").toDouble()
-                        val totProps = editTextPropinasReplace / totalHorasTrabajadas.toDouble()
-                        val totPropsFormateado = String.format("%.2f", totProps)
+                        val totProps = editTextPropinasReplace / totalHorasTrabajadas
+                        val totPropsFormateado = String.format(Locale.ROOT,"%.2f", totProps)
                         totPropsFormateado.also { editTextMostrarValorHora.text = it }
                         totPropsFormateado.replace(",", ".").toDouble()
                     }else{
@@ -139,7 +134,7 @@ class CalcActivity : AppCompatActivity() {
                 // Calcular las propinas individuales y actualizar la lista de camareros
                 for (camarero in camareros) {
                     val propinaIndividual = camarero.horasTrabajadas * valorPorHora
-                    val propinaIndividualFormat = String.format("%.2f",propinaIndividual)
+                    val propinaIndividualFormat = String.format(Locale.ROOT,"%.2f",propinaIndividual)
                     val propinaIndividualReplace = propinaIndividualFormat.replace(",",".")
                     camarero.propina = propinaIndividualReplace.toDouble()
 
@@ -162,7 +157,7 @@ class CalcActivity : AppCompatActivity() {
     // Restaura los datos del Bundle cuando sea necesario
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val savedCamareros = savedInstanceState.getParcelableArrayList<Camarero>("camareros")
+        val savedCamareros = savedInstanceState.getParcelableArrayListCompat<Camarero>("camareros")
         if (savedCamareros != null) {
             camareros.clear()
             camareros.addAll(savedCamareros)

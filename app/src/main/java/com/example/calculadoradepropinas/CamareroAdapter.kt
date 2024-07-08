@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CamareroAdapter(private val camareros: MutableList<Camarero>) :
     RecyclerView.Adapter<CamareroAdapter.ViewHolder>() {
-    private val selectedItems = mutableListOf<Int>()
 
     fun removeCamarero(position: Int) {
         if (position in 0 until camareros.size) {
