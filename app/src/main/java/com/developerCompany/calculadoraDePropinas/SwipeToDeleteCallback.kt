@@ -1,4 +1,4 @@
-package com.example.calculadoradepropinas
+package com.developerCompany.calculadoraDePropinas
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView

@@ -1,4 +1,4 @@
-package com.example.calculadoradepropinas
+package com.developerCompany.calculadoraDePropinas
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.MobileAds
 import com.google.android.material.textfield.TextInputLayout
 import java.util.Locale
+
 
 
 class CalcActivity : AppCompatActivity() {
@@ -47,16 +48,7 @@ class CalcActivity : AppCompatActivity() {
 
 
 
-            if (savedInstanceState != null) {
-                val savedCamareros = savedInstanceState.getParcelableArrayListCompat<Camarero>("camareros")
-                if (savedCamareros != null) {
-                    camareros.addAll(savedCamareros)
-                    adapter.notifyDataSetChanged()
-                }
 
-                val valorHora = savedInstanceState.getString("valor por hora")
-                editTextMostrarValorHora.text = valorHora
-            }
 
             btnAgregar = findViewById(R.id.btnAgregar)
             recyclerView = findViewById(R.id.recyclerView)
@@ -68,6 +60,18 @@ class CalcActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
             adapter = CamareroAdapter(camareros)
             recyclerView.adapter = adapter
+
+
+            if (savedInstanceState != null) {
+                val savedCamareros = savedInstanceState.getParcelableArrayListCompat<Camarero>("camareros")
+                if (savedCamareros != null) {
+                    camareros.addAll(savedCamareros)
+                    adapter.notifyDataSetChanged()
+                }
+
+                val valorHora = savedInstanceState.getString("valor por hora")
+                editTextMostrarValorHora.text = valorHora
+            }
 
             val textInputLayoutNombre = findViewById<TextInputLayout>(R.id.editTextNombre)
             val textInputLayoutHoras = findViewById<TextInputLayout>(R.id.editTextHoras)

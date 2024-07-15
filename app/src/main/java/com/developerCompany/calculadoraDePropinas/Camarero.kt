@@ -1,4 +1,4 @@
-package com.example.calculadoradepropinas
+package com.developerCompany.calculadoraDePropinas
 import android.os.Parcel
 import android.os.Parcelable
 

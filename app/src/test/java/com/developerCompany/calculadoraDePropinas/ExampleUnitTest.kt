@@ -1,4 +1,4 @@
-package com.example.calculadoradepropinas
+package com.developerCompany.calculadoraDePropinas
 
 import org.junit.Test
 

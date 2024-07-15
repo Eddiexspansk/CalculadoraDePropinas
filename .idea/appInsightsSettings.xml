@@ -8,7 +8,7 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.calculadoradepropinas" />
+                  <option name="appId" value="com.developerCompany.calculadoraDePropinas" />
                   <option name="mobileSdkAppId" value="1:748028468053:android:e9d1113b739568613c2ddc" />
                   <option name="projectId" value="calculadoradepropinas" />
                   <option name="projectNumber" value="748028468053" />

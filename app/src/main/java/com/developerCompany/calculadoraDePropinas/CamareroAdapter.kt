@@ -1,4 +1,4 @@
-package com.example.calculadoradepropinas
+package com.developerCompany.calculadoraDePropinas
 
 
 import android.annotation.SuppressLint
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
 
 class CamareroAdapter(private val camareros: MutableList<Camarero>) :
     RecyclerView.Adapter<CamareroAdapter.ViewHolder>() {
