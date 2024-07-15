@@ -46,10 +46,6 @@ class CalcActivity : AppCompatActivity() {
             val adRequest = AdRequest.Builder().build()
             mAdView.loadAd(adRequest)
 
-
-
-
-
             btnAgregar = findViewById(R.id.btnAgregar)
             recyclerView = findViewById(R.id.recyclerView)
             btnCalcular = findViewById(R.id.btnCalcular)
