@@ -8,14 +8,14 @@
         android:id="@+id/textViewNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre del camarero"
+        android:text="@string/nombre_del_camarero"
         android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/textViewHoras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Horas: 0"
+        android:text="@string/horas_0"
         android:textSize="18sp"/>
 
 </LinearLayout>

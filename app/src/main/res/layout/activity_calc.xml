@@ -16,7 +16,7 @@
             style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del camarero"
+            android:hint="@string/nombre_del_camarero_activity"
 
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
             style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Horas trabajadas"
+            android:hint="@string/horas_trabajadas"
 
             android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +81,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:text="Borrar"
+            android:text="@string/borrar"
             app:layout_constraintBottom_toTopOf="@+id/adView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
-            android:text="Calcular"
+            android:text="@string/calcular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnAgregar"
             app:layout_constraintTop_toBottomOf="@+id/editTextHoras" />
@@ -104,7 +104,7 @@
             style="?attr/textInputFilledStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Propinas Totales en Jornada"
+            android:hint="@string/propinas_totales_en_jornada"
             android:lines="@integer/material_motion_duration_long_1"
             android:padding="10dp"
             android:selectAllOnFocus="false"
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="56dp"
             android:layout_marginTop="24dp"
-            android:text="Valor por Hora:"
+            android:text="@string/valor_por_hora"
             app:layout_constraintStart_toStartOf="@+id/btnAgregar"
             app:layout_constraintTop_toBottomOf="@+id/btnAgregar" />
 
@@ -134,7 +134,7 @@
             android:id="@+id/textViewValorHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            android:text="@string/_0"
             android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
