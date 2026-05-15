@@ -9,13 +9,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 
-class CamareroAdapter(private val camareros: MutableList<Camarero>) :
+class CamareroAdapter(private val camareros: MutableList<Camarero>, private val onRemove: () -> Unit) :
     RecyclerView.Adapter<CamareroAdapter.ViewHolder>() {
 
     fun removeCamarero(position: Int) {
         if (position in 0 until camareros.size) {
             camareros.removeAt(position)
             notifyItemRemoved(position)
+            onRemove()
         }
     }
 

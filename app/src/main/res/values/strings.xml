@@ -21,4 +21,5 @@
     <string name="propinas_totales_en_jornada">Propinas Totales en Jornada</string>
     <string name="valor_por_hora">Valor por Hora:</string>
     <string name="_0">0</string>
+    <string name="cero_con_decimales">0.00</string>
 </resources>
