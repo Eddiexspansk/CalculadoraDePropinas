@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".PropisApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,7 +19,7 @@
             android:value="${admobAppId}"/>
 
         <activity
-            android:name=".CalcActivity"
+            android:name=".ui.main.CalcActivity"
             android:configChanges="orientation|screenSize|screenLayout"
             android:exported="true">
             <intent-filter>
