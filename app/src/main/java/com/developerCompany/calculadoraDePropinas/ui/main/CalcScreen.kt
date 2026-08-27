@@ -16,6 +16,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.ui.res.stringResource
+import com.developerCompany.calculadoraDePropinas.R
 import com.developerCompany.calculadoraDePropinas.domain.model.Camarero
 import com.developerCompany.calculadoraDePropinas.ui.util.NumberUtils
 
@@ -36,7 +38,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("PropiApp - Reparto Justo") })
+            TopAppBar(title = { Text(stringResource(R.string.app_name)) })
         }
     ) { padding ->
         Column(
@@ -53,19 +55,17 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
                     propinaInput = it
                     viewModel.actualizarPropinaTotal(it)
                 },
-                label = { Text("Propinas Totales en Jornada") },
+                label = { Text(stringResource(R.string.propinas_totales_en_jornada)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 modifier = Modifier.fillMaxWidth()
             )
-            
-            // ... (resto de campos con sus etiquetas descriptivas)
             
             Spacer(modifier = Modifier.height(8.dp))
             
             OutlinedTextField(
                 value = nombre,
                 onValueChange = { nombre = it },
-                label = { Text("Nombre del camarero") },
+                label = { Text(stringResource(R.string.nombre_del_camarero)) },
                 modifier = Modifier.fillMaxWidth()
             )
             
@@ -74,7 +74,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
             OutlinedTextField(
                 value = horas,
                 onValueChange = { horas = it },
-                label = { Text("Horas trabajadas") },
+                label = { Text(stringResource(R.string.horas_trabajadas)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                 modifier = Modifier.fillMaxWidth()
             )
@@ -84,7 +84,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
             Button(
                 onClick = {
                     val horasVal = NumberUtils.parse(horas)
-                    if (nombre.isNotBlank() && horasVal > 0) {
+                    if (nombre.isNotBlank() && (horasVal > 0)) {
                         viewModel.agregarCamarero(nombre, horasVal)
                         nombre = ""
                         horas = ""
@@ -94,7 +94,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
             ) {
                 Icon(Icons.Default.Add, contentDescription = null)
                 Spacer(modifier = Modifier.width(8.dp))
-                Text("Agregar")
+                Text(stringResource(R.string.agregar))
             }
             
             Spacer(modifier = Modifier.height(16.dp))
@@ -104,7 +104,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Valor por Hora:", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.valor_por_hora), fontWeight = FontWeight.Bold)
                 Text(NumberUtils.format(uiState.valorPorHora), fontSize = 18.sp)
             }
             
@@ -129,7 +129,7 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.secondary),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Borrar Todo")
+                Text(stringResource(R.string.borrar))
             }
         }
     }

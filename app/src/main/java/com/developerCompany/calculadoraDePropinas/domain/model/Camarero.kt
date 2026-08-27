@@ -11,5 +11,5 @@ data class Camarero(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val nombre: String,
     val horasTrabajadas: Double,
-    var propina: Double = 0.0
+    var propina: Double = 0.0,
 ) : Parcelable

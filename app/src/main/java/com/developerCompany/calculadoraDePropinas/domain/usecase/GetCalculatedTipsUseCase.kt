@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 data class CalculationResult(
     val updatedCamareros: List<Camarero>,
-    val valorPorHora: Double
+    val valorPorHora: Double,
 )
 
 /**

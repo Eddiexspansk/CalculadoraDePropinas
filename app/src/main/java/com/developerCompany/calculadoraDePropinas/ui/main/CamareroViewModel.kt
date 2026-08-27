@@ -14,7 +14,7 @@ import javax.inject.Inject
 data class CalcUiState(
     val camareros: List<Camarero> = emptyList(),
     val propinaTotal: Double = 0.0,
-    val valorPorHora: Double = 0.0
+    val valorPorHora: Double = 0.0,
 )
 
 /**
