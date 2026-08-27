@@ -28,7 +28,13 @@ Although I am in the early stages of my career as a developer, I decided to impl
 3. **Organized**: Each layer (`data`, `domain`, `ui`) has a clear responsibility.
 
 ## 📸 Screenshots
-*(You can upload app images here once you have them)*
+
+<p align="center">
+  <img src="screenshots/TipApp_LogoStart.png" width="200" title="Splash Screen">
+  <img src="screenshots/TripApp_CalcScreen.png" width="200" title="Main Screen">
+  <img src="screenshots/TipApp_UpdateScreen.png" width="200" title="Edit Waiter">
+  <img src="screenshots/TipApp_DarkMode.png" width="200" title="Dark Mode">
+</p>
 
 ---
 
