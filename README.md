@@ -31,7 +31,7 @@ Although I am in the early stages of my career as a developer, I decided to impl
 
 <p align="center">
   <img src="screenshots/TipApp_LogoStart.png" width="200" title="Splash Screen">
-  <img src="screenshots/TripApp_CalcScreen.png" width="200" title="Main Screen">
+  <img src="screenshots/TipApp_CalcScreen.png" width="200" title="Main Screen">
   <img src="screenshots/TipApp_UpdateScreen.png" width="200" title="Edit Waiter">
   <img src="screenshots/TipApp_DarkMode.png" width="200" title="Dark Mode">
 </p>
