@@ -19,6 +19,8 @@ object NumberUtils {
     }
 
     fun parse(value: String): Double {
-        return value.replace(",", ".").toDoubleOrNull() ?: 0.0
+        if (value.isBlank()) return 0.0
+        val sanitized = value.replace(",", ".").replace(Regex("[^0-9.]"), "")
+        return sanitized.toDoubleOrNull() ?: 0.0
     }
 }

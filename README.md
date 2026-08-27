@@ -1,34 +1,34 @@
-# 💰 PropiApp - Calculadora de Propinas para Camareros
+# 💰 TipApp - Fair Tip Distribution for Waiters
 
-¡Bienvenido a **PropiApp**! Este es un proyecto desarrollado con el objetivo de facilitar el reparto de propinas en equipos de hostelería, basándose en las horas trabajadas por cada integrante.
+Welcome to **TipApp**! This project was developed to simplify the distribution of tips in hospitality teams, based on the hours worked by each staff member.
 
-Este proyecto representa mi camino de aprendizaje en el desarrollo moderno de Android, donde he aplicado las herramientas y arquitecturas más actuales recomendadas por la comunidad.
+This project represents my learning journey in modern Android development, applying the latest tools and architectures recommended by the community.
 
-## 🚀 Características
-- **Cálculo en Tiempo Real**: Introduce el monto total y las horas de cada camarero para ver el reparto al instante.
-- **Persistencia Local**: Los datos no se pierden al cerrar la app gracias a una base de datos local.
-- **Interfaz Moderna**: Diseño fluido y adaptativo con Jetpack Compose.
-- **Gestión Inteligente**: Añade, edita o elimina camareros de forma sencilla.
+## 🚀 Features
+- **Real-Time Calculation**: Enter the total amount and hours for each waiter to see the distribution instantly.
+- **Local Persistence**: Data is not lost when closing the app thanks to a local database.
+- **Modern Interface**: Fluid and adaptive design using Jetpack Compose.
+- **Smart Management**: Easily add, edit, or delete waiters.
 
-## 🛠️ Tecnologías y Arquitectura
-Para este proyecto decidí salir de mi zona de confort y aplicar una arquitectura robusta:
+## 🛠️ Technologies and Architecture
+For this project, I decided to step out of my comfort zone and apply a robust architecture:
 
-- **Arquitectura**: Clean Architecture + MVVM (Model-View-ViewModel).
-- **UI**: Jetpack Compose (Interfaz declarativa).
-- **Inyección de Dependencias**: Hilt (para un código más desacoplado y mantenible).
-- **Base de Datos**: Room (Persistencia de datos local).
-- **Lenguaje**: Kotlin con flujos reactivos (StateFlow).
+- **Architecture**: Clean Architecture + MVVM (Model-View-ViewModel).
+- **UI**: Jetpack Compose (Declarative interface).
+- **Dependency Injection**: Hilt (for more decoupled and maintainable code).
+- **Database**: Room (Local data persistence).
+- **Language**: Kotlin with reactive flows (StateFlow).
 
-## 💡 ¿Por qué esta arquitectura?
-Aunque estoy en las primeras etapas de mi carrera como desarrollador, decidí implementar **Clean Architecture** para aprender cómo separar la lógica de negocio de la interfaz. Esto facilita que el código sea:
-1. **Testeable**: La lógica de cálculo es independiente de Android.
-2. **Escalable**: Es fácil añadir nuevas funciones en el futuro.
-3. **Organizado**: Cada capa (`data`, `domain`, `ui`) tiene una responsabilidad clara.
+## 💡 Why this architecture?
+Although I am in the early stages of my career as a developer, I decided to implement **Clean Architecture** to learn how to separate business logic from the interface. This makes the code:
+1. **Testable**: Calculation logic is independent of Android.
+2. **Scalable**: Easy to add new features in the future.
+3. **Organized**: Each layer (`data`, `domain`, `ui`) has a clear responsibility.
 
-## 📸 Capturas de Pantalla
-
+## 📸 Screenshots
+*(You can upload app images here once you have them)*
 
 ---
-Desarrollado con ❤️ por Eduardo Pinto
+Developed with ❤️ by **[YOUR NAME OR USERNAME]**
 - [LinkedIn](https://www.linkedin.com/in/eduardo-pinto-producer/)
-- [Portafolio](https://www.github.com/Eddiexspansk/)
+- [Portfolio](https://github.com/Eddiexspansk/)

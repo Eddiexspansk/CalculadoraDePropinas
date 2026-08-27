@@ -32,7 +32,7 @@ class CamareroViewModel @Inject constructor(
     
     // uiState combina la lista de camareros de la DB con el monto total para calcular los resultados
     val uiState: StateFlow<CalcUiState> = combine(
-        repository.getCamareros(),
+        repository.getCamareros().onStart { emit(emptyList()) },
         _propinaTotal
     ) { camareros, propinaTotal ->
         // Llamamos al caso de uso para obtener los cálculos actualizados
@@ -68,10 +68,22 @@ class CamareroViewModel @Inject constructor(
         _propinaTotal.value = NumberUtils.parse(montoStr)
     }
 
-    fun limpiarTodo() {
+    /**
+     * Limpia solo el monto de propinas de la jornada actual, 
+     * manteniendo la lista de camareros intacta.
+     */
+    fun limpiarMonto() {
+        _propinaTotal.value = 0.0
+    }
+
+    /**
+     * Borra todos los camareros de la base de datos para configurar un nuevo equipo.
+     */
+    fun borrarEquipo() {
         viewModelScope.launch {
             repository.clearAll()
-            _propinaTotal.value = 0.0
         }
     }
+
+    // Eliminamos la antigua función limpiarTodo() para evitar confusiones
 }

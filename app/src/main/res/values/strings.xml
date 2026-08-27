@@ -1,25 +1,29 @@
 <resources>
-    <string name="app_name">Propis</string>
-    <string name="registrarse">Registrarse</string>
-    <string name="acceder">Acceder</string>
-    <string name="contrase_a">Contraseña</string>
-    <string name="contrasena" />
-    <string name="Propinas" />
+    <string name="app_name">TipApp</string>
+    <string name="registrarse">Sign Up</string>
+    <string name="acceder">Login</string>
+    <string name="contrase_a">Password</string>
+    <string name="contrasena">Password</string>
+    <string name="Propinas">Tips</string>
     <string name="app_id">XXXXXXXX</string>
     <string name="banner_ad_unit_id">XXXXXXXX</string>
     <string name="email">Email</string>
-    <string name="agregar">Agregar</string>
-    <string name="nombre_del_camarero">Nombre del camarero</string>
-    <string name="horas_0">Horas: 0</string>
-    <string name="nombre_del_camarero_row">Nombre del camarero</string>
-    <string name="horas_trabajadas_0">Horas trabajadas: 0</string>
-    <string name="propina_individual_0">Propina individual: 0</string>
-    <string name="calcular">Calcular</string>
-    <string name="borrar">Borrar</string>
-    <string name="horas_trabajadas">Horas trabajadas</string>
-    <string name="nombre_del_camarero_activity">Nombre del camarero</string>
-    <string name="propinas_totales_en_jornada">Propinas Totales en Jornada</string>
-    <string name="valor_por_hora">Valor por Hora:</string>
+    <string name="agregar">Add</string>
+    <string name="nombre_del_camarero">Waiter Name</string>
+    <string name="horas_0">Hours: 0</string>
+    <string name="nombre_del_camarero_row">Waiter Name</string>
+    <string name="horas_trabajadas_0">Worked Hours: 0</string>
+    <string name="propina_individual_0">Individual Tip: 0</string>
+    <string name="calcular">Calculate</string>
+    <string name="borrar">Clear amounts</string>
+    <string name="horas_trabajadas">Worked hours</string>
+    <string name="nombre_del_camarero_activity">Waiter name</string>
+    <string name="propinas_totales_en_jornada">Total shift tips</string>
+    <string name="valor_por_hora">Value per Hour:</string>
     <string name="_0">0</string>
     <string name="cero_con_decimales">0.00</string>
+
+    <!-- New strings for Compose items -->
+    <string name="waiter_hours_label">Hours: %1$.1f</string>
+    <string name="individual_tip_label">Tip: $%1$s</string>
 </resources>
