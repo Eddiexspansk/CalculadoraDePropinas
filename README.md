@@ -30,5 +30,5 @@ Aunque estoy en las primeras etapas de mi carrera como desarrollador, decidí im
 
 ---
 Desarrollado con ❤️ por Eduardo Pinto
-- [LinkedIn](TU_URL_DE_LINKEDIN)
-- [Portafolio](TU_URL_DE_PORTAFOLIO)
+- [LinkedIn](https://www.linkedin.com/in/eduardo-pinto-producer/)
+- [Portafolio](https://www.github.com/Eddiexspansk/)
