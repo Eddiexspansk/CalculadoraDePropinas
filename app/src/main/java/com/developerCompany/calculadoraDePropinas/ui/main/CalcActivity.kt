@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.developerCompany.calculadoraDePropinas.ui.theme.TipAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -13,7 +14,9 @@ class CalcActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CalcScreen()
+            TipAppTheme (dynamicColor = false){
+                CalcScreen()
+            }
         }
     }
 }
