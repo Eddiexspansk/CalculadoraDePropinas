@@ -31,7 +31,22 @@ Although I am in the early stages of my career as a developer, I decided to impl
 *(You can upload app images here once you have them)*
 
 ---
-Developed by Eduardo Pinto
+
+## 🛠️ Latest Updates
+
+### 📝 Edit Waiter Functionality (August 2026)
+I have successfully implemented the ability to edit existing waiters in the list. This avoids the need to delete and re-add a waiter if a mistake was made in their name or hours.
+
+**Key Changes:**
+*   **Domain & Data:** Added `updateCamarero` support to `CamareroRepository` using Room DAO.
+*   **UI (ViewModel):** Integrated an "edit state" to track and handle waiter updates seamlessly.
+*   **Compose UI:**
+    *   Added an **Edit icon** to each item in the list.
+    *   Dynamic buttons: "Add" changes to "Update" when in edit mode, with a "Cancel" option.
+    *   Automatic field population for a better user experience.
+
+---
+Developed by **Eduardo Pinto**
 
 - [LinkedIn](https://www.linkedin.com/in/eduardo-pinto-producer/)
 - [Portfolio](https://github.com/Eddiexspansk/)

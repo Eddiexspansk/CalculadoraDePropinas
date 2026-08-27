@@ -15,6 +15,8 @@ class CamareroRepositoryImpl @Inject constructor(
 
     override suspend fun addCamarero(camarero: Camarero) = dao.insertCamarero(camarero)
 
+    override suspend fun updateCamarero(camarero: Camarero) = dao.insertCamarero(camarero)
+
     override suspend fun removeCamarero(camarero: Camarero) = dao.deleteCamarero(camarero)
 
     override suspend fun clearAll() = dao.deleteAll()

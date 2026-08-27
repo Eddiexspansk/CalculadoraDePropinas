@@ -26,4 +26,7 @@
     <!-- New strings for Compose items -->
     <string name="waiter_hours_label">Hours: %1$.1f</string>
     <string name="individual_tip_label">Tip: $%1$s</string>
+    <string name="actualizar">Update</string>
+    <string name="cancelar">Cancel</string>
+    <string name="editar">Edit</string>
 </resources>

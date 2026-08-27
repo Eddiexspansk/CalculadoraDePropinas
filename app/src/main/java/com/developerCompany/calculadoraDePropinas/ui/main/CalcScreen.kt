@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -43,6 +44,13 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
     var horas by remember { mutableStateOf("") }
     var propinaInput by remember { mutableStateOf("") }
 
+    LaunchedEffect(uiState.camareroEnEdicion) {
+        uiState.camareroEnEdicion?.let {
+            nombre = it.nombre
+            horas = it.horasTrabajadas.toString()
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(stringResource(R.string.app_name)) })
@@ -66,13 +74,23 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
                 onAgregar = {
                     val horasVal = NumberUtils.parse(horas)
                     if (nombre.isNotBlank() && (horasVal > 0)) {
-                        viewModel.agregarCamarero(nombre, horasVal)
+                        if (uiState.camareroEnEdicion != null) {
+                            viewModel.actualizarCamarero(nombre, horasVal)
+                        } else {
+                            viewModel.agregarCamarero(nombre, horasVal)
+                        }
                         nombre = ""
                         horas = ""
                         focusManager.clearFocus()
                     }
                 },
                 onDeleteCamarero = { viewModel.eliminarCamarero(it) },
+                onEditCamarero = { viewModel.iniciarEdicion(it) },
+                onCancelEdit = {
+                    viewModel.cancelarEdicion()
+                    nombre = ""
+                    horas = ""
+                },
                 onClearMonto = {
                     viewModel.limpiarMonto()
                     propinaInput = ""
@@ -94,13 +112,23 @@ fun CalcScreen(viewModel: CamareroViewModel = viewModel()) {
                 onAgregar = {
                     val horasVal = NumberUtils.parse(horas)
                     if (nombre.isNotBlank() && (horasVal > 0)) {
-                        viewModel.agregarCamarero(nombre, horasVal)
+                        if (uiState.camareroEnEdicion != null) {
+                            viewModel.actualizarCamarero(nombre, horasVal)
+                        } else {
+                            viewModel.agregarCamarero(nombre, horasVal)
+                        }
                         nombre = ""
                         horas = ""
                         focusManager.clearFocus()
                     }
                 },
                 onDeleteCamarero = { viewModel.eliminarCamarero(it) },
+                onEditCamarero = { viewModel.iniciarEdicion(it) },
+                onCancelEdit = {
+                    viewModel.cancelarEdicion()
+                    nombre = ""
+                    horas = ""
+                },
                 onClearMonto = {
                     viewModel.limpiarMonto()
                     propinaInput = ""
@@ -122,6 +150,8 @@ fun SeparateLayout(
     onHorasChange: (String) -> Unit,
     onAgregar: () -> Unit,
     onDeleteCamarero: (Camarero) -> Unit,
+    onEditCamarero: (Camarero) -> Unit,
+    onCancelEdit: () -> Unit,
     onClearMonto: () -> Unit
 ) {
     Column(
@@ -166,10 +196,24 @@ fun SeparateLayout(
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onAgregar, modifier = Modifier.fillMaxWidth()) {
-            Icon(Icons.Default.Add, contentDescription = null)
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(stringResource(R.string.agregar))
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = onAgregar,
+                modifier = Modifier.weight(1f)
+            ) {
+                Icon(if (uiState.camareroEnEdicion != null) Icons.Default.Edit else Icons.Default.Add, contentDescription = null)
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(if (uiState.camareroEnEdicion != null) stringResource(R.string.actualizar) else stringResource(R.string.agregar))
+            }
+            if (uiState.camareroEnEdicion != null) {
+                Spacer(modifier = Modifier.width(8.dp))
+                OutlinedButton(
+                    onClick = onCancelEdit,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(stringResource(R.string.cancelar))
+                }
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
         Row(
@@ -185,7 +229,11 @@ fun SeparateLayout(
         // Lista de Camareros (Desplazable de forma independiente)
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(uiState.camareros, key = { it.id }) { camarero ->
-                CamareroItem(camarero = camarero, onDelete = { onDeleteCamarero(camarero) })
+                CamareroItem(
+                    camarero = camarero,
+                    onDelete = { onDeleteCamarero(camarero) },
+                    onEdit = { onEditCamarero(camarero) }
+                )
             }
         }
 
@@ -212,6 +260,8 @@ fun UnifiedLayout(
     onHorasChange: (String) -> Unit,
     onAgregar: () -> Unit,
     onDeleteCamarero: (Camarero) -> Unit,
+    onEditCamarero: (Camarero) -> Unit,
+    onCancelEdit: () -> Unit,
     onClearMonto: () -> Unit
 ) {
     LazyColumn(
@@ -258,10 +308,24 @@ fun UnifiedLayout(
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = onAgregar, modifier = Modifier.fillMaxWidth()) {
-                Icon(Icons.Default.Add, contentDescription = null)
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(stringResource(R.string.agregar))
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Button(
+                    onClick = onAgregar,
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Icon(if (uiState.camareroEnEdicion != null) Icons.Default.Edit else Icons.Default.Add, contentDescription = null)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(if (uiState.camareroEnEdicion != null) stringResource(R.string.actualizar) else stringResource(R.string.agregar))
+                }
+                if (uiState.camareroEnEdicion != null) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    OutlinedButton(
+                        onClick = onCancelEdit,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text(stringResource(R.string.cancelar))
+                    }
+                }
             }
             Spacer(modifier = Modifier.height(16.dp))
             Row(
@@ -276,7 +340,11 @@ fun UnifiedLayout(
         }
 
         items(uiState.camareros, key = { it.id }) { camarero ->
-            CamareroItem(camarero = camarero, onDelete = { onDeleteCamarero(camarero) })
+            CamareroItem(
+                camarero = camarero,
+                onDelete = { onDeleteCamarero(camarero) },
+                onEdit = { onEditCamarero(camarero) }
+            )
         }
 
         item {
@@ -293,7 +361,7 @@ fun UnifiedLayout(
 }
 
 @Composable
-fun CamareroItem(camarero: Camarero, onDelete: () -> Unit) {
+fun CamareroItem(camarero: Camarero, onDelete: () -> Unit, onEdit: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -307,7 +375,7 @@ fun CamareroItem(camarero: Camarero, onDelete: () -> Unit) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(camarero.nombre, fontWeight = FontWeight.Bold)
                 Text(
                     text = stringResource(R.string.waiter_hours_label, camarero.horasTrabajadas),
@@ -318,8 +386,13 @@ fun CamareroItem(camarero: Camarero, onDelete: () -> Unit) {
                     fontSize = 14.sp
                 )
             }
-            IconButton(onClick = onDelete) {
-                Icon(Icons.Default.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.error)
+            Row {
+                IconButton(onClick = onEdit) {
+                    Icon(Icons.Default.Edit, contentDescription = stringResource(R.string.editar), tint = MaterialTheme.colorScheme.primary)
+                }
+                IconButton(onClick = onDelete) {
+                    Icon(Icons.Default.Delete, contentDescription = "Delete", tint = MaterialTheme.colorScheme.error)
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ data class CalcUiState(
     val camareros: List<Camarero> = emptyList(),
     val propinaTotal: Double = 0.0,
     val valorPorHora: Double = 0.0,
+    val camareroEnEdicion: Camarero? = null
 )
 
 /**
@@ -30,17 +31,22 @@ class CamareroViewModel @Inject constructor(
     // Flujo interno para manejar el monto total de propinas introducido
     private val _propinaTotal = MutableStateFlow(0.0)
     
+    // Flujo para manejar el camarero que se está editando
+    private val _camareroEnEdicion = MutableStateFlow<Camarero?>(null)
+    
     // uiState combina la lista de camareros de la DB con el monto total para calcular los resultados
     val uiState: StateFlow<CalcUiState> = combine(
         repository.getCamareros().onStart { emit(emptyList()) },
-        _propinaTotal
-    ) { camareros, propinaTotal ->
+        _propinaTotal,
+        _camareroEnEdicion
+    ) { camareros, propinaTotal, camareroEnEdicion ->
         // Llamamos al caso de uso para obtener los cálculos actualizados
         val result = calculateTipsUseCase(camareros, propinaTotal)
         CalcUiState(
             camareros = result.updatedCamareros,
             propinaTotal = propinaTotal,
-            valorPorHora = result.valorPorHora
+            valorPorHora = result.valorPorHora,
+            camareroEnEdicion = camareroEnEdicion
         )
     }.stateIn(
         scope = viewModelScope,
@@ -60,7 +66,26 @@ class CamareroViewModel @Inject constructor(
 
     fun eliminarCamarero(camarero: Camarero) {
         viewModelScope.launch {
+            if (_camareroEnEdicion.value?.id == camarero.id) {
+                _camareroEnEdicion.value = null
+            }
             repository.removeCamarero(camarero)
+        }
+    }
+
+    fun iniciarEdicion(camarero: Camarero) {
+        _camareroEnEdicion.value = camarero
+    }
+
+    fun cancelarEdicion() {
+        _camareroEnEdicion.value = null
+    }
+
+    fun actualizarCamarero(nombre: String, horas: Double) {
+        val actual = _camareroEnEdicion.value ?: return
+        viewModelScope.launch {
+            repository.updateCamarero(actual.copy(nombre = nombre, horasTrabajadas = horas))
+            _camareroEnEdicion.value = null
         }
     }
 
