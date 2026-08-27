@@ -11,6 +11,6 @@ plugins {
 
 
 
-rootProject.name = "Calculadora de Propinas"
+rootProject.name = "TipApp"
 include(":app")
  
