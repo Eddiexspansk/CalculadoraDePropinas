@@ -75,15 +75,4 @@ class CamareroViewModel @Inject constructor(
     fun limpiarMonto() {
         _propinaTotal.value = 0.0
     }
-
-    /**
-     * Borra todos los camareros de la base de datos para configurar un nuevo equipo.
-     */
-    fun borrarEquipo() {
-        viewModelScope.launch {
-            repository.clearAll()
-        }
-    }
-
-    // Eliminamos la antigua función limpiarTodo() para evitar confusiones
 }

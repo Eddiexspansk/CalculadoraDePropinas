@@ -8,6 +8,7 @@ This project represents my learning journey in modern Android development, apply
 - **Real-Time Calculation**: Enter the total amount and hours for each waiter to see the distribution instantly.
 - **Local Persistence**: Data is not lost when closing the app thanks to a local database.
 - **Modern Interface**: Fluid and adaptive design using Jetpack Compose.
+- **Dark Mode Support**: Full support for system dark and light themes.
 - **Smart Management**: Easily add, edit, or delete waiters.
 
 ## 🛠️ Technologies and Architecture
@@ -29,6 +30,7 @@ Although I am in the early stages of my career as a developer, I decided to impl
 *(You can upload app images here once you have them)*
 
 ---
-Developed with ❤️ by **[YOUR NAME OR USERNAME]**
+Developed by Eduardo Pinto
+
 - [LinkedIn](https://www.linkedin.com/in/eduardo-pinto-producer/)
 - [Portfolio](https://github.com/Eddiexspansk/)
